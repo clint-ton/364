@@ -1,0 +1,21 @@
+====================================
+
+config file format examples (bits in brackets are comments):
+
+
+router-id 1   		     (1-64000 unique)
+
+input-ports 6110 6201 7345   (1024-64000, port numbers only occur once, port numbers correspond to the number of neighbours a router has)
+
+outputs 5000-1-1 5002-5-4    (contact information for neighboured routers, (neighbours input port that it listens to the current router from)-(metric value of link)-(router-id of peer)
+			      metric value is 1-15, 16 is infinity, no listed output ports should be the same as any listed input or output ports)
+
+timer-values 30-180-120      (timer values in the standard are 30s for an update, 180s for a timeout, and 120s for garbage collection. Timer values must be set to a ratio of these 3)
+
+====================================
+
+If a parameter is correctly specified multiple times, the first instance of that parameter is used.
+The uniqueness of the router ID must be specified manually, as well as the uniqueness of the ports in relation to other host config files
+Two neighbouring routers must also have an input port listed as an output port of the other
+
+====================================
